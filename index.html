@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Economics — Cram Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+  padding: 14px;
+}
+
+/* PAGE */
+.page { max-width: 1080px; margin: 0 auto; }
+
+/* HEADER BAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #111;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.topbar h1 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.topbar .meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: #555;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* MAIN GRID — 4 columns */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+/* BLOCK */
+.block {
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.block.span2 { grid-column: span 2; }
+.block.span3 { grid-column: span 3; }
+.block.span4 { grid-column: span 4; }
+
+.bhead {
+  padding: 3px 7px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid #d0d0d0;
+}
+.bhead .nb {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  padding: 0px 4px;
+  border-radius: 1px;
+  margin-left: auto;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+.bbody { padding: 5px 7px; }
+
+/* ROW inside block */
+.r {
+  display: flex;
+  gap: 5px;
+  padding: 2px 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: flex-start;
+  line-height: 1.35;
+}
+.r:last-child { border-bottom: none; }
+.r .k {
+  font-weight: 600;
+  flex-shrink: 0;
+  color: #111;
+  font-size: 9.5px;
+}
+.r .v { color: #222; font-size: 9.5px; flex: 1; }
+.r .v em { color: #777; font-style: normal; }
+
+/* SIMPLE LIST */
+.li {
+  padding: 2px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 9.5px;
+  line-height: 1.35;
+  display: flex;
+  gap: 4px;
+}
+.li:last-child { border-bottom: none; }
+.li::before { content: '·'; color: #aaa; flex-shrink: 0; }
+.li strong { font-weight: 600; }
+.li em { color: #777; font-style: normal; }
+
+/* NUMBERED */
+.ni {
+  padding: 2px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 9.5px;
+  line-height: 1.35;
+  display: flex;
+  gap: 4px;
+}
+.ni:last-child { border-bottom: none; }
+.ni .n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  color: #aaa;
+  flex-shrink: 0;
+  min-width: 11px;
+}
+.ni strong { font-weight: 600; }
+.ni em { color: #777; font-style: normal; }
+
+/* VS TABLE */
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 9.5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+.vs-h {
+  padding: 2px 6px;
+  font-weight: 700;
+  font-size: 8.5px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  letter-spacing: 0.03em;
+}
+.vs-h:first-child { border-right: 1px solid #e0e0e0; }
+.vs-c {
+  padding: 2px 6px;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.3;
+  vertical-align: top;
+}
+.vs-c:nth-child(odd) { border-right: 1px solid #e0e0e0; }
+.vs-row:last-child .vs-c { border-bottom: none; }
+.vs-row { display: contents; }
+
+/* FORMULA */
+.f {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  padding: 0px 5px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* CALLOUT */
+.note {
+  background: #fffbe6;
+  border-left: 2px solid #e0a800;
+  padding: 3px 6px;
+  margin-top: 3px;
+  font-size: 9px;
+  line-height: 1.35;
+  color: #5a4400;
+}
+.note.red { background: #fff0f0; border-color: #cc3333; color: #550000; }
+.note.green { background: #f0faf2; border-color: #2a7a3a; color: #1a3a20; }
+.note.blue { background: #f0f5ff; border-color: #3060b0; color: #0a2040; }
+
+/* CHAPTER COLOUR ACCENTS */
+.c1 .bhead { background: #f4effe; border-bottom-color: #b48de0; color: #4a1a8e; }
+.c2 .bhead { background: #fdf6dc; border-bottom-color: #d4b000; color: #6a4a00; }
+.c3 .bhead { background: #eaf4ec; border-bottom-color: #7abf8a; color: #1a5a28; }
+.c5 .bhead { background: #edf3fa; border-bottom-color: #7aaad8; color: #0a2a4a; }
+.c11 .bhead { background: #fef3ec; border-bottom-color: #e09060; color: #7a3000; }
+.c12 .bhead { background: #fdf0f0; border-bottom-color: #e09090; color: #7a1a1a; }
+
+.c1 .bhead .nb { border-color: #b48de0; color: #4a1a8e; background: #fff; }
+.c2 .bhead .nb { border-color: #d4b000; color: #6a4a00; background: #fff; }
+.c3 .bhead .nb { border-color: #7abf8a; color: #1a5a28; background: #fff; }
+.c5 .bhead .nb { border-color: #7aaad8; color: #0a2a4a; background: #fff; }
+.c11 .bhead .nb { border-color: #e09060; color: #7a3000; background: #fff; }
+.c12 .bhead .nb { border-color: #e09090; color: #7a1a1a; background: #fff; }
+
+/* SECTION DIVIDER */
+.divider {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  padding: 4px 0 2px;
+  border-top: 1px solid #e8e8e8;
+  margin-top: 4px;
+  grid-column: span 4;
+}
+.divider:first-child { border-top: none; margin-top: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <h1>Public Economics — Cram Sheet &nbsp;·&nbsp; Ch 1 · 2 · 3 · 5 · 11 · 12</h1>
+  <div class="meta">
+    <span><strong>4 Jun 2026 · 14:00–17:00</strong></span>
+    <span>Sec A: 15 MCQ</span>
+    <span>Sec B: 35 marks · 7 Short Q</span>
+    <span>Sec C: 50 marks · 4 Long Q</span>
+  </div>
+</div>
+
+<div class="grid">
+
+<!-- ══ ROW 1 ══ -->
+<div class="divider">Ch 1 — Introduction</div>
+
+<!-- Ch1: Gov Views -->
+<div class="block c1">
+  <div class="bhead">Views of Gov't</div>
+  <div class="bbody">
+    <div class="r"><span class="k">Organic</span><span class="v">State is natural; individuals serve collective; freedoms can be limited</span></div>
+    <div class="r"><span class="k">Mechanistic</span><span class="v">State is artificial; serves individuals; needs their consent</span></div>
+  </div>
+</div>
+
+<!-- Ch1: Levels -->
+<div class="block c1">
+  <div class="bhead">Levels of Gov't</div>
+  <div class="bbody">
+    <div class="r"><span class="k">National</span><span class="v">Defence, fiscal policy, SARB, grants</span></div>
+    <div class="r"><span class="k">Provincial</span><span class="v">Education, healthcare, social dev</span></div>
+    <div class="r"><span class="k">Local</span><span class="v">Water, electricity, roads, housing</span></div>
+  </div>
+</div>
+
+<!-- Ch1: Private/Public -->
+<div class="block c1 span2">
+  <div class="bhead">Private vs Public Sector Relationship <span class="nb">NB — Illustrate</span></div>
+  <div class="bbody">
+    <div class="r"><span class="k">Injects (G)</span><span class="v">Gov't spending → stimulates demand · Deficit: G &gt; T → borrow → public debt</span></div>
+    <div class="r"><span class="k">Withdraws (T)</span><span class="v">Taxation removes purchasing power · Surplus: T &gt; G</span></div>
+    <div class="r"><span class="k">Identity</span><span class="v"><span class="f">Y = C + I + G + (X − M)</span></span></div>
+  </div>
+</div>
+
+<!-- ══ ROW 2 ══ -->
+<div class="divider">Ch 2 — Efficiency &amp; Benchmark Model ★ NB</div>
+
+<!-- Ch2: 3 Efficiencies -->
+<div class="block c2">
+  <div class="bhead">3 Types of Efficiency <span class="nb">NB Illustrate</span></div>
+  <div class="bbody">
+    <div class="ni"><span class="n">1</span><div><strong>Allocative</strong> — P = MC; right mix of goods</div></div>
+    <div class="ni"><span class="n">2</span><div><strong>Productive</strong> — lowest cost; on PPF; no waste</div></div>
+    <div class="ni"><span class="n">3</span><div><strong>Dynamic</strong> — efficient over time; supports innovation</div></div>
+  </div>
+</div>
+
+<!-- Ch2: Assumptions -->
+<div class="block c2">
+  <div class="bhead">Neoclassical Assumptions <span class="nb">NB</span></div>
+  <div class="bbody">
+    <div class="li">Perfect competition — price-takers</div>
+    <div class="li">Full information — no asymmetries</div>
+    <div class="li">No externalities · No public goods</div>
+    <div class="li">No merit/demerit goods — consumer sovereignty</div>
+    <div class="li">Rational agents · Perfect factor mobility</div>
+    <div class="note red">Any assumption fails → market failure → gov't justified</div>
+  </div>
+</div>
+
+<!-- Ch2: Equilibrium Conditions -->
+<div class="block c2">
+  <div class="bhead">3 Conditions for Equilibrium</div>
+  <div class="bbody">
+    <div class="ni"><span class="n">1</span><div><strong>Exchange:</strong> <span class="f">MRS_A = MRS_B</span> for all consumers</div></div>
+    <div class="ni"><span class="n">2</span><div><strong>Production:</strong> <span class="f">MRTS_1 = MRTS_2</span> for all firms</div></div>
+    <div class="ni"><span class="n">3</span><div><strong>Product mix:</strong> <span class="f">MRS = MRT</span></div></div>
+  </div>
+</div>
+
+<!-- Ch2: 3 Functions + Intervention -->
+<div class="block c2">
+  <div class="bhead">Gov't Functions &amp; Intervention</div>
+  <div class="bbody">
+    <div class="ni"><span class="n">1</span><div><strong>Allocation</strong> — fix market failures; public goods</div></div>
+    <div class="ni"><span class="n">2</span><div><strong>Distribution</strong> — taxes &amp; transfers for equity</div></div>
+    <div class="ni"><span class="n">3</span><div><strong>Stabilisation</strong> — employment, prices, growth</div></div>
+    <div class="r" style="margin-top:3px;"><span class="k">Direct</span><span class="v">Public production, regulation, price controls</span></div>
+    <div class="r"><span class="k">Indirect</span><span class="v">Taxes, subsidies, transfer payments</span></div>
+  </div>
+</div>
+
+<!-- ══ ROW 3 ══ -->
+<div class="divider">Ch 3 — Externalities &amp; Public Goods → Section C</div>
+
+<!-- Ch3: Ext definition + formulas -->
+<div class="block c3">
+  <div class="bhead">Externalities — Core</div>
+  <div class="bbody">
+    <div class="li"><strong>Def:</strong> Effect on 3rd party not in market prices — no compensation/penalty</div>
+    <div class="li"><span class="f">MSC = MPC + MEC</span> &nbsp; <span class="f">MSB = MPB + MEB</span></div>
+    <div class="li"><strong>Tech ext:</strong> Direct physical effect → true market failure → intervene</div>
+    <div class="li"><strong>Pecuniary ext:</strong> Via price changes → NOT market failure → don't intervene</div>
+  </div>
+</div>
+
+<!-- Ch3: Negative -->
+<div class="block c3">
+  <div class="bhead">Negative Externality <span class="nb">NB Graph</span></div>
+  <div class="bbody">
+    <div class="r"><span class="k">Cause</span><span class="v">MEC &gt; 0 → MSC &gt; MPC; true cost understated</span></div>
+    <div class="r"><span class="k">Market</span><span class="v">Overproduce at too low P (E₀)</span></div>
+    <div class="r"><span class="k">Optimum</span><span class="v">E₁: MSC = MSB — lower Q, higher P</span></div>
+    <div class="r"><span class="k">DWL</span><span class="v">Triangle between E₀ and E₁</span></div>
+    <div class="r"><span class="k">Fix</span><span class="v">Pigouvian tax = MEC → shifts MPC up to MSC</span></div>
+  </div>
+</div>
+
+<!-- Ch3: Positive -->
+<div class="block c3">
+  <div class="bhead">Positive Externality <span class="nb">NB Graph</span></div>
+  <div class="bbody">
+    <div class="r"><span class="k">Cause</span><span class="v">MEB &gt; 0 → MSB &gt; MPB; benefit understated</span></div>
+    <div class="r"><span class="k">Market</span><span class="v">Underproduce at too low P (E₀)</span></div>
+    <div class="r"><span class="k">Optimum</span><span class="v">E₁: MSB = MSC — higher Q, higher P</span></div>
+    <div class="r"><span class="k">DWL</span><span class="v">Triangle between E₀ and E₁</span></div>
+    <div class="r"><span class="k">Fix</span><span class="v">Pigouvian subsidy = MEB → shifts MPB up to MSB</span></div>
+  </div>
+</div>
+
+<!-- Ch3: Solutions + Public Goods -->
+<div class="block c3">
+  <div class="bhead">Solutions &amp; Public Goods <span class="nb">NB Table</span></div>
+  <div class="bbody">
+    <div class="li"><strong>Pigouvian tax/sub:</strong> tax = MEC (neg); subsidy = MEB (pos)</div>
+    <div class="li"><strong>Regulation:</strong> standards, limits, bans</div>
+    <div class="li"><strong>Cap &amp; trade:</strong> permits issued; total pollution capped; firms buy/sell</div>
+    <div class="li"><strong>Coase:</strong> clear property rights + zero transaction costs → private bargain. <em>Impractical at scale</em></div>
+    <div class="vs" style="margin-top:4px;">
+      <div class="vs-h">Private Good</div><div class="vs-h">Public Good</div>
+      <div class="vs-row"><div class="vs-c">Rival + excludable</div><div class="vs-c">Non-rival + non-excludable</div></div>
+      <div class="vs-row"><div class="vs-c">Horizontal ΣQ demand · <span class="f">P=MC</span></div><div class="vs-c">Vertical ΣP demand · <span class="f">ΣMRS=MC</span></div></div>
+      <div class="vs-row"><div class="vs-c">Markets provide efficiently</div><div class="vs-c">Free-rider → under-provided</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROW 4 ══ -->
+<div class="divider">Ch 5 — Welfare Theory, Voting &amp; Rent Seeking</div>
+
+<!-- Ch5: Pareto + Nozick -->
+<div class="block c5">
+  <div class="bhead">Pareto &amp; Nozick <span class="nb">NB</span></div>
+  <div class="bbody">
+    <div class="note blue" style="margin-bottom:4px;"><strong>Pareto:</strong> ≥1 better off, nobody worse off. Rarely met. 3 compatible justifications for redistribution: (1) Externality — helping poor benefits all; (2) Insurance motive — veil of ignorance → choose social insurance; (3) Altruism — rich derive utility from poor's welfare</div>
+    <div class="li"><strong>Nozick (libertarian):</strong> Redistribute only to fix injustice</div>
+    <div class="li"><strong>Acquisition:</strong> May acquire unowned things without worsening others</div>
+    <div class="li"><strong>Transfer:</strong> Voluntary transfers of justly held goods are just</div>
+    <div class="li"><strong>Rectification:</strong> Unjust acquisition/transfer must be corrected</div>
+  </div>
+</div>
+
+<!-- Ch5: SWF + Rawls -->
+<div class="block c5">
+  <div class="bhead">Welfare Functions &amp; Rawls</div>
+  <div class="bbody">
+    <div class="vs">
+      <div class="vs-h">Cardinal (Utilitarian)</div><div class="vs-h">Ordinal</div>
+      <div class="vs-row">
+        <div class="vs-c"><span class="f">W = U_A + U_B</span> — utility measurable &amp; comparable</div>
+        <div class="vs-c"><span class="f">W = W(U_A,U_B)</span> — rankings only; no comparison needed</div>
+      </div>
+    </div>
+    <div class="note blue" style="margin-top:4px;"><strong>Rawls maximin:</strong> <span class="f">W = Min(U_A, U_B)</span> — W = lowest utility. To raise W, must raise the worst-off. Veil of ignorance → rational agents choose this. <em>Limitation: ignores everyone else; may justify huge sacrifices for tiny gain to poorest</em></div>
+    <div class="li" style="margin-top:3px;"><strong>Optimal welfare:</strong> point on utility possibility curve (QR) tangent to highest W contour = point H</div>
+  </div>
+</div>
+
+<!-- Ch5: Voting -->
+<div class="block c5">
+  <div class="bhead">Voting Rules &amp; Median Voter <span class="nb">NB</span></div>
+  <div class="bbody">
+    <div class="vs">
+      <div class="vs-h">Rule</div><div class="vs-h">Key point</div>
+      <div class="vs-row"><div class="vs-c"><strong>Dictatorial</strong></div><div class="vs-c">1 person decides all</div></div>
+      <div class="vs-row"><div class="vs-c"><strong>Unanimity (100%)</strong></div><div class="vs-c">All agree; protects all; prone to veto</div></div>
+      <div class="vs-row"><div class="vs-c"><strong>Majority (50%+1)</strong></div><div class="vs-c">Most common; faster; no minority veto</div></div>
+      <div class="vs-row"><div class="vs-c"><strong>Plurality</strong></div><div class="vs-c">Highest count wins; no majority needed</div></div>
+    </div>
+    <div class="note blue" style="margin-top:4px;"><strong>Median voter theorem:</strong> Middle voter's preferred outcome always wins under majority rule. Any deviation can be beaten by a proposal closer to the median. <em>Assumes rational, single-peaked preferences</em></div>
+  </div>
+</div>
+
+<!-- Ch5: Cost of Decision Making + Arrow -->
+<div class="block c5">
+  <div class="bhead">Decision Costs &amp; Arrow <span class="nb">NB Graph</span></div>
+  <div class="bbody">
+    <div class="r"><span class="k">C_D (decision)</span><span class="v">Slopes UP — harder to agree as threshold rises</span></div>
+    <div class="r"><span class="k">C_E (external)</span><span class="v">Slopes DOWN — fewer outvoted as threshold rises</span></div>
+    <div class="r"><span class="k">C_T = C_D+C_E</span><span class="v">U-shaped. Min at <strong>M*</strong> = optimal majority (&gt;50%, &lt;100%)</span></div>
+    <div class="note blue" style="margin-top:3px;"><strong>Arrow's impossibility:</strong> No rule satisfies all 5 at once: (1) Rationality (2) Transitivity — X&gt;Y, Y&gt;Z → X&gt;Z, else Condorcet paradox (3) Non-dictatorship (4) Pareto — unanimous preference respected (5) IIA — X vs Y ranking unaffected by Z</div>
+  </div>
+</div>
+
+<!-- Ch5: Politicians + Rent Seeking — FULL WIDTH -->
+<div class="block c5 span4">
+  <div class="bhead">Politicians vs Bureaucrats &amp; Rent Seeking <span class="nb">NB Define + Graph</span></div>
+  <div class="bbody" style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+    <div>
+      <div class="vs">
+        <div class="vs-h">Politicians</div><div class="vs-h">Bureaucrats (Niskanen)</div>
+        <div class="vs-row"><div class="vs-c">Vote-maximising → target median voter</div><div class="vs-c">Budget-maximising → bigger budget = more power</div></div>
+        <div class="vs-row"><div class="vs-c">Short-term; popular over efficient</div><div class="vs-c">Info advantage; tend to oversupply output</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="note blue"><strong>Rent seeking def:</strong> Using political influence to gain economic benefits without producing value — redistributing existing wealth, not creating new. Legal but wasteful.</div>
+      <div class="li" style="margin-top:3px;"><strong>Problems:</strong> Wastes resources · Distorts incentives (lobby &gt; innovate) · Shrinks total welfare · Encourages corruption · Amplifies DWL beyond standard monopoly triangle</div>
+    </div>
+    <div>
+      <div class="li"><strong>Graph:</strong> Standard monopoly — D=AR, MR below, MC=AC horizontal</div>
+      <div class="li">Q_m: MR=MC · P_m on demand curve</div>
+      <div class="li"><strong>Profit rectangle</strong> = (P_m − AC) × Q_m = rent being sought</div>
+      <div class="li"><strong>Standard DWL triangle</strong> = Q_m to Q_c</div>
+      <div class="li"><strong>With rent seeking:</strong> lobbying ≈ profit rectangle → total social cost = rectangle + triangle</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROW 5 ══ -->
+<div class="divider">Ch 11 — Tax Theory</div>
+
+<!-- Ch11: Sources + Systems -->
+<div class="block c11">
+  <div class="bhead">Sources of Finance &amp; Tax Systems</div>
+  <div class="bbody">
+    <div class="li"><strong>Taxes</strong> (primary) · <strong>User charges</strong> (tolls, fees) · <strong>Borrowing</strong> (deferred tax) · <strong>Seigniorage</strong> (inflation tax) · <strong>Grants</strong></div>
+    <div class="r" style="margin-top:3px;"><span class="k">Progressive</span><span class="v">ATR rises with income · SA PIT 18–45% · redistributive</span></div>
+    <div class="r"><span class="k">Proportional</span><span class="v">ATR constant · flat tax · same % at all levels</span></div>
+    <div class="r"><span class="k">Regressive</span><span class="v">ATR falls with income · VAT effect on low-income households</span></div>
+  </div>
+</div>
+
+<!-- Ch11: Classifications -->
+<div class="block c11">
+  <div class="bhead">Tax Classifications</div>
+  <div class="bbody">
+    <div class="r"><span class="k">General</span><span class="v">All goods uniformly → no relative price change → approaches neutrality</span></div>
+    <div class="r"><span class="k">Selective</span><span class="v">Specific goods only → distorts relative prices → substitution → DWL</span></div>
+    <div class="r"><span class="k">Specific</span><span class="v">Fixed R/unit <em>(R5/litre)</em> → parallel supply shift</span></div>
+    <div class="r"><span class="k">Ad valorem</span><span class="v">% of price <em>(15% VAT)</em> → supply shifts by %; gap widens at higher P</span></div>
+    <div class="r"><span class="k">Direct</span><span class="v">Paid by intended bearer; not easily shifted <em>(income tax, CGT)</em></span></div>
+    <div class="r"><span class="k">Indirect</span><span class="v">Collected by intermediary; shifted to consumer <em>(VAT, excise)</em></span></div>
+  </div>
+</div>
+
+<!-- Ch11: Good Tax + Equity -->
+<div class="block c11 span2">
+  <div class="bhead">Criteria for a Good Tax &amp; Equity <span class="nb">NB</span></div>
+  <div class="bbody" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+    <div>
+      <div class="ni"><span class="n">1</span><div><strong>Equity</strong> — fair; horizontal &amp; vertical</div></div>
+      <div class="ni"><span class="n">2</span><div><strong>Efficiency</strong> — minimise distortion &amp; DWL</div></div>
+      <div class="ni"><span class="n">3</span><div><strong>Simplicity</strong> — easy to understand &amp; comply</div></div>
+      <div class="ni"><span class="n">4</span><div><strong>Revenue adequacy</strong> — funds public expenditure</div></div>
+      <div class="ni"><span class="n">5</span><div><strong>Flexibility</strong> — responds to economic conditions; progressive tax = automatic stabiliser</div></div>
+    </div>
+    <div>
+      <div class="r"><span class="k">Horizontal equity</span><span class="v">Same income = same tax. Equals treated equally.</span></div>
+      <div class="r"><span class="k">Vertical equity</span><span class="v">Different income = different tax. Greater ability to pay → pay more. Justifies progressive taxation.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROW 6 ══ -->
+<div class="divider">Ch 12 — Tax Burden &amp; Excess Burden</div>
+
+<!-- Ch12: Normal vs Excess -->
+<div class="block c12">
+  <div class="bhead">Normal vs Excess Burden</div>
+  <div class="bbody">
+    <div class="vs">
+      <div class="vs-h">Normal (General) Burden</div><div class="vs-h">Excess Burden (DWL)</div>
+      <div class="vs-row"><div class="vs-c">Income effect only — poorer, no substitution</div><div class="vs-c">Income + substitution effect</div></div>
+      <div class="vs-row"><div class="vs-c">Relative prices unchanged → no distortion</div><div class="vs-c">Relative prices distorted → DWL triangle</div></div>
+      <div class="vs-row"><div class="vs-c">Welfare lost = revenue raised exactly</div><div class="vs-c">Welfare lost &gt; revenue raised</div></div>
+    </div>
+    <div class="note red" style="margin-top:3px;">DWL increases with <strong>(1) tax rate²</strong> and <strong>(2) price elasticity</strong> of D &amp; S</div>
+  </div>
+</div>
+
+<!-- Ch12: Neutrality + Lump Sum -->
+<div class="block c12">
+  <div class="bhead">Tax Neutrality &amp; Lump Sum <span class="nb">NB</span></div>
+  <div class="bbody">
+    <div class="note red" style="margin-bottom:4px;"><strong>Neutral tax:</strong> No excess burden — welfare loss = revenue exactly. General taxes approach neutrality. Selective taxes are non-neutral.</div>
+    <div class="note red"><strong>Lump sum:</strong> Fixed amount regardless of behaviour → no substitution effect → no DWL → Pareto-efficient. <em>Limitation: regressive; ignores ability to pay; impractical</em></div>
+  </div>
+</div>
+
+<!-- Ch12: Lump Sum vs Selective — SPAN 2 -->
+<div class="block c12 span2">
+  <div class="bhead">Lump Sum vs Selective Tax (same revenue) <span class="nb">NB Key Diagram</span></div>
+  <div class="bbody">
+    <div class="vs">
+      <div class="vs-h"></div><div class="vs-h">Lump Sum</div><div class="vs-h" style="border-left:1px solid #e0e0e0;">Selective Tax</div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Budget line</div><div class="vs-c">Parallel inward shift — relative prices unchanged</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Rotates inward on taxed good's axis — relative price rises</div></div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Effects</div><div class="vs-c">Income effect only</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Income + substitution effect</div></div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Indiff. curve</div><div class="vs-c">Lower IC but optimal bundle preserved</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Even lower IC — substitution adds welfare loss</div></div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Excess burden</div><div class="vs-c">None — loss = revenue</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Positive — loss &gt; revenue; gap = DWL</div></div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Efficiency</div><div class="vs-c">Pareto-efficient</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Not Pareto-efficient</div></div>
+      <div class="vs-row"><div class="vs-c" style="font-weight:600;">Equity</div><div class="vs-c">Highly regressive — ignores ability to pay</div><div class="vs-c" style="border-left:1px solid #e0e0e0;">Can be progressive / proportional / regressive by design</div></div>
+    </div>
+    <div class="note red" style="margin-top:3px;">Graph steps: E₀ (P₀,Q₀) → tax shifts S up → E₁ (P₁,Q₁) · Revenue = rectangle (tax × Q₁) · DWL = triangle right of Q₁ — lost but not collected</div>
+  </div>
+</div>
+
+</div><!-- end grid -->
+
+<!-- FOOTER -->
+<div style="border-top:1px solid #ccc; margin-top:8px; padding-top:4px; display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:8.5px; color:#aaa;">
+  <span>Public Economics · Exam 4 June 2026 · Ch 1, 2, 3, 5, 11, 12</span>
+  <span>★ NB = High Priority · → Sec C = Long Question</span>
+</div>
+
+</div>
+</body>
+</html>
